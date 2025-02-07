@@ -1,0 +1,145 @@
+<div id="main-content" class="container allContent-section py-4">
+  <h2>Bài Viết</h2>
+  <button type="button" class="btn btn-secondary " style="height:40px" data-toggle="modal" data-target="#thembaiviet">
+    Thêm Bài Viết
+  </button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Hình Ảnh</th>
+        <th class="text-center">Tên Bài Viết</th>
+        <th class="text-center">Nội Dung</th>
+        <th class="text-center">Danh Mục</th>
+        <th class="text-center">Ngày</th>
+        <th class="text-center" colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.list.forEach((item) => { %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><img height='100px' src='<%= item.hinhanh %>'></td>
+        <td><%= item.tieude %></td>
+        <td><%= item.noidung %></td>
+        <td><%= item.danhmuc %></td>
+        <td><%= item.ngay %></td>
+        <td>
+          <button class="btn btn-primary" onclick="editbaiviet('<%=item.id%>')" style="height:40px" data-toggle="modal"
+            data-target="#editbaivietModal">Edit</button>
+        </td>
+        <td>
+          <button class="btn btn-danger" onclick="deletebaiviet('<%=item.id%>')" style="height:40px">Delete</button>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <!-- Trigger the modal with a button -->
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="thembaiviet" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm Bài Viết</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" action="/admin/upload_baiviet" method="POST">
+            <div class="form-group">
+              <label for="name">Tên Bài Viết:</label>
+              <input type="text" class="form-control" id="n_name" name="n_name" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Nội Dung</label>
+              <textarea name="n_noidung" class="form-control" placeholder="hay nhap noi dung vao day"
+                id="editor"></textarea>
+
+            </div>
+            <div class="form-group">
+              <label for="qty">Ngày</label>
+              <input type="date" class="form-control" id="n_ngay" name="n_ngay" required>
+            </div>
+            <div class="form-group">
+              <label>Danh Mục:</label>
+              <select id="category" name="category">
+                <option disabled selected>Chọn Danh Mục</option>
+                <% data.danhmuc.forEach((category) => { %>
+                <option value="<%= category.id %>"><%= category.tendanhmuc %></option>
+                <% }); %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="file">Chọn Ảnh:</label>
+              <input type="file" class="form-control-file" name="file" id="file">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-secondary" id="upload" style="height:40px">Thêm Bài</button>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editbaivietModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sửa Bài Viết</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" id="editForm">
+            <div class="form-group">
+              <label for="id">ID:</label>
+              <input type="text" class="form-control" id="id" name="id" readonly>
+            </div>
+            <div class="form-group">
+              <label for="n_name">Tên Bài Viết:</label>
+              <input type="text" class="form-control" id="n_name" name="edit_baiviet" required>
+            </div>
+            <div class="form-group">
+              <label for="n_noidung">Nội Dung</label>
+              <textarea name="edit_noidung" class="form-control" placeholder="hay nhap noi dung vao day"
+                id="editor"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="n_ngay">Ngày</label>
+              <input type="date" class="form-control" id="n_ngay" name="edit_ngay" required>
+            </div>
+            <div class="form-group">
+              <label for="category">Danh Mục:</label>
+              <select id="category" name="edit_category">
+                <option disabled selected>Chọn Danh Mục</option>
+                <% data.danhmuc.forEach((category) => { %>
+                <option value="<%= category.id %>"><%= category.tendanhmuc %></option>
+                <% }); %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="file">Chọn Ảnh:</label>
+              <input type="file" class="form-control-file" name="file" id="file">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-secondary" id="upload" style="height:40px">Sửa Bài</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,56 @@
+<div class="col-lg-12 col-md-12 col-sm-12">
+  <div class="left_content">
+    <% sldanhmuc.forEach(function(list) { %>
+    <div class="single_post_content">
+      <h2><span><%- list.tendanhmuc %></span></h2>
+      <div class="single_post_content_left">
+        <ul class="business_catgnav wow fadeInDown">
+          <% var firstPost = true; %>
+          <% tieudehinhanh.forEach(function(post) { %>
+          <% if(firstPost && post.danhmuc == list.id ) { %>
+          <% firstPost = false; %>
+          <li>
+            <figure class="bsbig_fig">
+              <a href="/baiviet/<%-post.id%>" class="featured_img">
+                <img alt="" src="/images/<%- post.hinhanh%>" />
+                <span class="overlay"></span>
+              </a>
+              <figcaption>
+                <a href="/baiviet/<%-post.id%>"><%- post.tieude%></a>
+              </figcaption>
+              <p>
+                <%- post.noidung%>
+              </p>
+            </figure>
+          </li>
+          <% } %>
+          <% }); %>
+        </ul>
+      </div>
+      <div class="single_post_content_right">
+        <ul class="spost_nav">
+          <% tieudehinhanh.forEach(function(item) { %>
+          <% if(item.danhmuc == list.id ) { %>
+          <li>
+            <div class="media wow fadeInDown">
+              <a href="" class="media-left">
+                <img alt="" src="/images/<%- item.hinhanh%>" />
+              </a>
+              <div class="media-body">
+                <a href="/baiviet/<%- item.id%>" class="catg_title">
+                  <%- item.tieude%></a>
+              </div>
+            </div>
+          </li>
+          <% } %>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+    <% }); %>
+
+
+    <!-- thu muc chua anh -->
+    <%- include('photography.ejs') %>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="single_post_content">
+    <h2><span>Photography</span></h2>
+    <ul class="photograph_nav  wow fadeInDown">
+        <% tieudehinhanh.forEach(function(item) { %>
+        <li>
+            <div class="photo_grid">
+                <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button"
+                        href="/images/<%- item.hinhanh%>" title="Photography Ttile 1"> <img
+                            src="/images/<%- item.hinhanh%>" alt="" /></a> </figure>
+            </div>
+        </li>
+        <% }); %>
+    </ul>
+</div>

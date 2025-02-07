@@ -1,0 +1,10 @@
+<%- include('head.ejs') %>
+<% if (content === 'navbarIndex.ejs') { %>
+<%- include('client/header/navbarIndex.ejs') %>
+<% } else if (content === 'navbaruser.ejs') { %>
+<%- include('client/header/navbaruser.ejs') %>
+<% } %>
+<%- include('client/header/newsSection.ejs') %>
+<%- include('client/sliderSection/sliderSection.ejs') %>
+<%- include('client/contentSection/contentSection.ejs') %>
+<%- include('footer.ejs') %>

@@ -1,0 +1,88 @@
+<div class="container">
+  <header id="header">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="header_top">
+          <div class="header_top_left">
+            <ul class="top_nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#contactModal">Liên hệ</a></li>
+            </ul>
+          </div>
+          <div class="header_top_right">
+            <p>Friday, December 05, 2045</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="header_bottom">
+          <div class="logo_area">
+            <a href="/" class="logo"><img src="images/logo.jpg" alt="" /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section id="navArea">
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav main_nav">
+          <li class="active">
+            <a href="/"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a>
+          </li>
+          <li><a href="#" data-toggle="modal" data-target="#contactModal">Liên hệ</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- Thêm class "navbar-right" để dịch nút login sang phải -->
+          <li><a href="/admin">Quản Trị</a></li>
+          <li><a href="/user/logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Liên hệ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="contactForm" action="/upload_lienhe" method="POST">
+            <div>
+              <label for="name">Tên</label>
+              <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Số điện thoại</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Tiêu đề</label>
+              <input type="text" class="form-control" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Nội dung</label>
+              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Gửi</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

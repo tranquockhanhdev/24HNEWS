@@ -1,0 +1,32 @@
+<div id="main-content" class="container allContent-section py-4">
+    <h3>Danh Mục</h3>
+    <table class="table ">
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Tên</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">sodienthoai</th>
+                <th class="text-center">tieude</th>
+                <th class="text-center">noidung</th>
+                <th class="text-center" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.list.forEach((item) => { %>
+            <tr>
+                <td><%= item.id %></td>
+                <td><%= item.ten %></td>
+                <td><%= item.email %></td>
+                <td><%= item.sodienthoai %></td>
+                <td><%= item.tieude %></td>
+                <td><%= item.noidung %></td>
+                <td>
+                    <button class="btn btn-danger" onclick="deletelienhe('<%=item.id%>')"
+                        style="height:40px">Delete</button>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>

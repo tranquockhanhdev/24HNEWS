@@ -1,0 +1,32 @@
+<div id="main-content" class="container allContent-section py-4">
+  <h2>Khách Hàng</h2>
+  <table class="table ">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Username </th>
+        <th class="text-center">Mật Khẩu</th>
+        <th class="text-center">Họ Tên</th>
+        <th class="text-center">Số Điện Thoại</th>
+        <th class="text-center">Trạng Thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.list.forEach((item) => { %>
+      <tr>
+        <% for (var key in item) { %>
+        <% if (key === 'trangthai') { %>
+        <% if (item[key] === 1) { %>
+        <td>Kích Hoạt</td>
+        <% } else if (item[key] === 0) { %>
+        <td>Chặn</td>
+        <% } %>
+        <% } else { %>
+        <td><%= item[key] %></td>
+        <% } %>
+        <% } %>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,88 @@
+<div id="main-content" class="container allContent-section py-4">
+  <h3>Danh Mục</h3>
+  <table class="table ">
+    <thead>
+      <tr>
+        <th class="text-center">ID</th>
+        <th class="text-center">Danh Mục</th>
+        <th class="text-center" colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.list.forEach((item) => { %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.tendanhmuc %></td>
+        <td>
+          <button class="btn btn-danger" onclick="deletedanhmuc('<%=item.id%>')" style="height:40px">Delete</button>
+        </td>
+        <td>
+          <button class="btn btn-primary" onclick="editdanhmuc('<%=item.id%>')" style="height:40px" data-toggle="modal"
+            data-target="#editform">Edit</button>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <button type=" button" class="btn btn-secondary" style="height:40px" data-toggle="modal" data-target="#addform">
+    Thêm Danh Mục
+  </button>
+
+  <div class="modal fade" id="addform" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm Danh Mục Mới</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/admin/upload_danhmuc" method="POST">
+            <div class="form-group">
+              <label for="c_name">Tên Danh Mục:</label>
+              <input type="text" class="form-control" name="danhmucname" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-secondary" name="uploaddanhmuc" style="height:40px">Thêm Danh
+                Mục</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editform" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Chỉnh Sửa Danh Mục</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="editForm" method="POST">
+            <div class="form-group">
+              <label for="c_name">ID:</label>
+              <input type="text" class="form-control" name="id" readonly>
+              <label for="c_name">Tên Danh Mục:</label>
+              <input type="text" class="form-control" name="edit_name" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-secondary" name="editdanhmuc" style="height:40px">Chỉnh
+                Sửa</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="height:40px">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,103 @@
+<%- include('head.ejs')%>
+<% if (content === 'navbarIndex.ejs') { %>
+<%- include('client/header/navbarIndex.ejs') %>
+<% } else if (content === 'navbaruser.ejs') { %>
+<%- include('client/header/navbaruser.ejs') %>
+<% } %>
+<%- include('client/header/newsSection.ejs')%>
+<section id="contentSection">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="left_content">
+                <div class="single_page">
+                    <h1><%= data.list[0].tieude %></h1>
+                    <div class="single_page_content"> <img class="img-center"
+                            src="../images/<%=  data.list[0].hinhanh %>" alt="">
+                        <blockquote><%= data.list[0].noidung %></blockquote>
+                        <a href="#" data-toggle="modal" data-target="#binhluan"
+                            style="background-color: blue; color:white">Bình
+                            Luận</a>
+                        <% data.listbinhluan.forEach(function(item) { %>
+                        <p>email: <%= item.email%></p>
+                        <p>Nội dung: <%= item.noidung%></p>
+                        <% }); %>
+                    </div>
+                    <div class="related_post">
+                        <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+                        <ul class="spost_nav wow fadeInDown animated">
+                            <% var count = 0; %>
+                            <% tieudehinhanh.forEach(function(item) { %>
+                            <% if(item.danhmuc == data.list[0].danhmuc && count < 3) { %>
+                            <li>
+                                <div class="media wow fadeInDown">
+                                    <a href="/baiviet/<%= item.id %>" class="media-left">
+                                        <img alt="" src="../images/<%= item.hinhanh %>">
+                                    </a>
+                                    <div class="media-body">
+                                        <a href="/baiviet/<%= item.id %>" class="catg_title">
+                                            <%= item.tieude %>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <% count++; %>
+                            <% } %>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <aside class="right_content">
+                <div class="single_sidebar">
+                    <h2><span>Popular Post</span></h2>
+                    <ul class="spost_nav">
+                        <% var temp = 0; %>
+                        <% tieudehinhanh.forEach(function(item) { %>
+                        <% if(item.danhmuc == data.list[0].danhmuc  && temp < 7) { %>
+                        <li>
+                            <div class="media wow fadeInDown"> <a href="/baiviet/<%= item.id %>" class="media-left">
+                                    <img alt="" src="../images/<%= item.hinhanh %>"> </a>
+                                <div class="media-body"> <a href="/baiviet/<%= item.id %>" class="catg_title">
+                                        <%= item.tieude %></a> </div>
+                            </div>
+                        </li>
+                        <% temp++; %>
+                        <% } %>
+                        <% }); %>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="binhluan" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Bình Luận</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm" action="/upload_binhluan" method="POST">
+                    <input type="hidden" id="id" name="id" value="<%= data.list[0].id %>">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="binhluan_email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Nội dung</label>
+                        <textarea class="form-control" id="message" name="binhluan_message" rows="5"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('footer.ejs') %>

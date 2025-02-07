@@ -1,2 +1,0 @@
-# CRUDnodejstemplate
-CRUDnodejstemplate
